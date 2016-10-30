@@ -1,0 +1,176 @@
+<?php
+include('session.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	    
+	    <link rel="icon" type="image/png" href="images/favicon.ico">
+	    <link href="css/bootstrap.css" rel="stylesheet" />
+	    <link href="css/fresh-bootstrap-table.css" rel="stylesheet" />
+
+	    <!--     Fonts and icons     -->
+	    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
+		<title>Laporan</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="wrapper">
+		    <div class="fresh-table full-color-asphalt full-screen-table">
+		    <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange                  
+		            Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+		    -->
+			    <br>
+		        <div class="container">
+		            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"><b id="welcome" ><font color="ffffff">Welcome <?php echo $login_session; ?></font></b></div>
+		            <div><button class="btn btn-sm button" href="logout.php">Log Out</button></div>
+		        </div>
+		        
+		        <div class="toolbar">
+		            <a class="btn" href="laporan.php">Laporan Tempat Sampah</a>
+		        </div>
+
+				<table id="fresh-table" class="table">
+					<thead>
+						<th class="col-md-1" data-field="name" data-sortable="true">Nama</th>
+						<th class="col-md-1" data-field="email" data-sortable="true">Email</th>
+						<th class="col-md-2" data-field="deskripsi" data-sortable="true">Deskripsi</th>
+						<th class="col-md-1" data-field="foto">Foto</th>
+						<th class="col-md-1" data-field="latitude" data-sortable="true">Latitude</th>
+						<th class="col-md-1" data-field="longitude" data-sortable="true">Longitude</th>
+						<th class="col-md-1" data-field="id" data-formatter="operateFormatter" data-events="operateEvents">Action</th>
+					</thead>
+
+					<tbody>
+            		<tr>
+	                    <td>Dakota Rice</td>
+	                    <td>drice@yahoo.com</td>
+	                    <td>Sampah telalu menumpuk</td>
+	                    <td><a href="#">Foto</a></td>
+	                    <td>100</td>
+	                    <td>200</td>
+                	</tr>
+	                	<td>Richese</td>
+	                    <td>rechese@yahoo.com</td>
+	                    <td>asdfa aspofasd fasdf aspf aspdfsa aspdfkasd asdfaslaf asdf asdfpasdf asdf sadlfas dfasdf asdflasdf asdfla sdfasdf aspdf</td>
+	                    <td><a href="#">Foto</a></td>
+	                    <td>111</td>
+	                    <td>201</td>
+                	</tr>
+					<!--
+					<?php
+						include 'config.php';  
+						$query = mysql_query("select * from laporan_sampah");  
+						while ( $data = mysql_fetch_array($query) )
+					{
+					?>
+					<tr>
+						<td><?php echo $data['nama'];?></td>   
+						<td><?php echo $data['email'];?></td>
+						<td><?php echo $data['deskripsi'];?></td> 
+						<td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $data['foto'] ).'"/>';?></td> 
+						<td><?php echo $data['lat'];?></td>   
+						<td><?php echo $data['lng'];?></td>
+
+						<td><a href="delete_laporan.php?kirim_id= <?php echo $data['id']?>">Delete</a></td>
+						<td><a href="detail_laporan.php?kirim_id= <?php echo $data['id']?>">Detail</a></td>
+					</tr>
+					<?php } ?>
+					-->
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</body>
+	    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table.js"></script>
+        
+    <script type="text/javascript">
+        var $table = $('#fresh-table'),
+            $alertBtn = $('#alertBtn'), 
+            full_screen = false,
+            window_height;
+            
+        $().ready(function(){
+            
+            window_height = $(window).height();
+            table_height = window_height - 20;
+            
+            
+            $table.bootstrapTable({
+                toolbar: ".toolbar",
+
+                showRefresh: true,
+                search: true,
+                showToggle: true,
+                showColumns: true,
+                pagination: true,
+                striped: true,
+                sortable: true,
+                height: table_height,
+                pageSize: 25,
+                pageList: [25,50,100],
+                
+                formatShowingRows: function(pageFrom, pageTo, totalRows){
+                    //do nothing here, we don't want to show the text "showing x of y from..." 
+                },
+                formatRecordsPerPage: function(pageNumber){
+                    return pageNumber + " rows visible";
+                },
+                icons: {
+                    refresh: 'fa fa-refresh',
+                    toggle: 'fa fa-th-list',
+                    columns: 'fa fa-columns',
+                    detailOpen: 'fa fa-plus-circle',
+                    detailClose: 'fa fa-minus-circle'
+                }
+            });
+            
+            window.operateEvents = {
+                'click .edit': function (e, value, row, index) {
+                    alert('You click edit icon, row: ' + JSON.stringify(row));
+                    console.log(value, row, index);    
+                },
+                'click .remove': function (e, value, row, index) {
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: [row.id]
+                    });
+            
+                }
+            };
+            
+            $alertBtn.click(function () {
+                alert("You pressed on Alert");
+            });
+        
+            
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView');
+            });    
+        });
+        
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a rel="tooltip" title="Detail" class="table-action edit" href="" title="Detail">',
+                    '<i class="fa fa-edit"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Delete" class="table-action remove" href="delete_laporan.php?kirim_id= <?php echo $data[id]?>" title="Delete">',
+                    '<i class="fa fa-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+       
+    </script>
+</html>

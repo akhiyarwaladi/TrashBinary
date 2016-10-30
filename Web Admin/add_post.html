@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	    
+	    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	    <meta name="viewport" content="width=device-width" />
+	    
+	    <link href="css/bootstrap.css" rel="stylesheet" />
+		<link href="css/coming-sssoon.css" rel="stylesheet" />    
+	    
+	    <!--     Fonts     -->
+	    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+	    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+		<link href="style.css" rel="stylesheet" type="text/css">
+
+		<title>Trash Binary : Add Marker</title>
+	</head>
+<body>
+	<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">  
+		<div class="container"></div>
+	</nav>
+	<div class="main">
+		<div class="cover black" data-color="black"></div>
+		<div class="container">
+			<div class="content">
+				<h4 class="motto"> </h4>
+				<div class="subscribe">
+					<h5 class="info-text"></h5>
+					<div class="row">
+                		<div align="center">
+
+
+							<?php
+							include 'config.php'; //memanggil file config.php supaya terkoneksi dengan database
+							//mengambil data isian dari textfield yang bersesuaian dan menyimpannya dalam variabel
+
+							if(isset($_POST['submit'])) {
+							//$id= $_REQUEST['kirim_id'];
+							$lat = $_POST['latitude'];
+							$lng = $_POST['longitude'];
+							}
+
+							if (empty($lat) || empty($lng))  //cek jika ada texfield yang Kosong
+								{
+									echo "<h4><font color="fffff"> Form ada yang kosong, silahkan isi ulang <a href='add.php'> form </a></font></h4>";
+								}
+							else
+								{
+									$query = mysql_query("insert into markers value ('','$lat','$lng')");
+									if ($query == TRUE)
+										{
+											echo "<h4><font color="fffff">Data Berhasil <b>ditambah</b>, silahkan lihat daftar <a href='profile.php'>markers</a></font></h4>";
+										}
+									else
+										{
+											echo "<h4><font color="fffff">error</font></h4>";
+										}
+								}
+
+							?>
+
+
+				        	</div>
+					    </div>
+	        		</div>
+	        	</div>
+	        </div>
+		</div>
+
+	</body>
+</html>
+

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">TrashBinary</string>
+    <string name="title_activity_main">TrashBinary</string>
+    <string name="title_activity_maps">Lihat Tempat Sampah</string>
+    <string name="title_trashbin_report">Lapor Sampah</string>
+    <string name="title_activity_login">Sign In</string>
+    <string name="lbl_you_are_at">KAMU DI</string>
+    <string name="btn_get_location">Lihat Tempat Sampah</string>
+    <string name="btn_start_location_updates">Lapor Tempat Sampah</string>
+
+    <string name="hint_name">Nama Lengkap</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Deskripsi</string>
+    <string name="btn_report">Lapor</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_description">Enter the description</string>
+
+     <!-- Button text -->
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="btn_revoke_access">Revoke Access</string>
+    <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+
+
+
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Settings</string>
+    <string name="action_new">Settings</string>
+    <string name="logo_desc">App logo</string>
+
+    <string name="btnSelectPicture">pilih gambar</string>
+    <string name="btnCapturePicture">ambil gambar</string>
+    <string name="string_upload_image">upload gambar</string>
+    <string name="string_view_image">lihat gambar</string>
+</resources>
